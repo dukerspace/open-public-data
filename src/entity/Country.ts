@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm'
+import { Province } from './Province'
 
 @Entity('countries')
 export class Country {
@@ -7,4 +8,8 @@ export class Country {
 
   @Column()
   country_name: string
+
+  @OneToMany(type => Province, province => province.country)
+  @JoinColumn()
+  province: Province
 }

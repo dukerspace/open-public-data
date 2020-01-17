@@ -1,9 +1,9 @@
 import { config } from 'dotenv'
-import * as express from 'express'
+import express from 'express'
 import * as bodyParser from 'body-parser'
 import { resolve } from 'path'
 import { createConnection } from 'typeorm'
-import * as cron from 'cron'
+import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
 import FeachData from './jobs/FetchData'
@@ -42,17 +42,17 @@ app.use(router)
 
 // Cron job
 const cronJob = cron.CronJob
-new cronJob(
-  '0 * * * * *',
-  function() {
-    console.log('Fetch data')
-    const fetching = new FeachData()
-    fetching.getData()
-  },
-  null,
-  true,
-  'Asia/bangkok'
-)
+// new cronJob(
+//   '0 * * * * *',
+//   function() {
+//     console.log('Fetch data')
+//     const fetching = new FeachData()
+//     fetching.getData()
+//   },
+//   null,
+//   true,
+//   'Asia/Bangkok'
+// )
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)

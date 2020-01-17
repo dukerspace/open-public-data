@@ -12,6 +12,9 @@ class PlaceRepository extends BaseRepository {
       console.log('yyy', e)
     }
   }
+  public async create(data): Promise<Place> {
+    return await super.create(data)
+  }
 }
 
 export default PlaceRepository
