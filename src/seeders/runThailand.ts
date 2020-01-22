@@ -44,7 +44,6 @@ class RunThailand {
         }
         const province = new ProvinceRepository()
         const getProvince = await province.create(provinceData)
-
         for (const a in addressJson[p].amphurs) {
           const cityNameTH = addressJson[p].amphurs[a].AMPHUR_NAME
           const cityNameEN = addressJson[p].amphurs[a].AMPHUR_NAME_ENG
