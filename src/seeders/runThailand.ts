@@ -27,25 +27,32 @@ class RunThailand {
       .catch(error => console.log('Database connection error: ', error))
 
       const countryData = {
-        country_name: 'ประเทศไทย'
+        country_name_th: 'ประเทศไทย',
+        country_name_en: 'Thailand'
       }
 
       const country = new CountryRepository()
       const getCountry = await country.create(countryData)
       for (const p in addressJson) {
-        const provinceName = addressJson[p].PROVINCE_NAME
+        const provinceNameTH = addressJson[p].PROVINCE_NAME
+        const provinceNameEN = addressJson[p].PROVINCE_NAME_ENG
+
         const provinceData = {
           country: getCountry.id,
-          province_name: provinceName
+          province_name_th: provinceNameTH,
+          province_name_en: provinceNameEN
         }
         const province = new ProvinceRepository()
         const getProvince = await province.create(provinceData)
 
         for (const a in addressJson[p].amphurs) {
-          const cityName = addressJson[p].amphurs[a].AMPHUR_NAME
+          const cityNameTH = addressJson[p].amphurs[a].AMPHUR_NAME
+          const cityNameEN = addressJson[p].amphurs[a].AMPHUR_NAME_ENG
+
           const cityData = {
             province_id: getProvince.id,
-            city_name: cityName
+            city_name_th: cityNameTH,
+            city_name_en: cityNameEN
           }
           const city = new CityRepository()
           await city.create(cityData)

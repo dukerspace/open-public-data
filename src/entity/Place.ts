@@ -6,7 +6,11 @@ export class Place {
   id: number
 
   @Column()
-  place_name: string
+  place_name_th: string
+
+  @Column()
+  place_name_en: string
+
 
   @Column()
   lat: number

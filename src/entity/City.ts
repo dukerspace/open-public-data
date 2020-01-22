@@ -9,5 +9,8 @@ export class City {
   province_id: number
 
   @Column()
-  city_name: string
+  city_name_th: string
+
+  @Column()
+  city_name_en: string
 }

@@ -13,7 +13,11 @@ export class createCountriesTable1579078342863 implements MigrationInterface {
             isPrimary: true
           },
           {
-            name: 'country_name',
+            name: 'country_name_th',
+            type: 'varchar'
+          },
+          {
+            name: 'country_name_en',
             type: 'varchar'
           }
         ]

@@ -11,5 +11,8 @@ export class Province {
   country: Country
 
   @Column()
-  province_name: string
+  province_name_th: string
+
+  @Column()
+  province_name_en: string
 }

@@ -13,7 +13,11 @@ export class createPlacesTable1579075749414 implements MigrationInterface {
             isPrimary: true
           },
           {
-            name: 'place_name',
+            name: 'place_name_th',
+            type: 'varchar'
+          },
+          {
+            name: 'place_name_en',
             type: 'varchar'
           },
           {

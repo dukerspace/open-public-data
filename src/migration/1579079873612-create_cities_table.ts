@@ -17,7 +17,11 @@ export class createCitiesTable1579079873612 implements MigrationInterface {
             type: 'integer'
           },
           {
-            name: 'city_name',
+            name: 'city_name_th',
+            type: 'varchar'
+          },
+          {
+            name: 'city_name_en',
             type: 'varchar'
           }
         ]

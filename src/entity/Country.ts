@@ -7,7 +7,10 @@ export class Country {
   id: number
 
   @Column()
-  country_name: string
+  country_name_th: string
+
+  @Column()
+  country_name_en: string
 
   @OneToMany(type => Province, province => province.country)
   @JoinColumn()
