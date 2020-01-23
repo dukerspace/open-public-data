@@ -14,7 +14,7 @@ class BaseRepository {
       .getMany()
   }
   public async create(data) {
-    return await getRepository(this.model).create(data)
+    return await getRepository(this.model).save(data)
   }
   public async find(id: number) {
     return await getRepository(this.model).findOne(id)

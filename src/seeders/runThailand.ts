@@ -1,46 +1,65 @@
+import { createConnection } from 'typeorm'
 import CountryRepository from '../repositories/countryRepository'
 import ProvinceRepository from '../repositories/provinceRepository'
 import CityRepository from '../repositories/cityRepository'
 // import CountryRepository from '../repositories/countryRepository'
 
-import thailand from './ThailandLocation.json'
+import addressJson from './ThailandLocation.json'
+import { Country } from '../entity/Country'
 
 class RunThailand {
   addresses: []
   constructor() {
     this.run()
   }
-  public run() {
+  public async run() {
     console.log('Seeding.')
-
+    await this.insert()
     console.log('Seeded.')
+
   }
   public async insert() {
-    const countryData = {
-      country_name: 'ประเทศไทย'
-    }
-    const country = new CountryRepository()
-    const countryId = country.create(countryData)
-
-    thailand.map(d => {
-      const provinceName = d.PROVINCE_NAME
-      const provinceData = {
-        country_id: countryId,
-        province_name: provinceName
-      }
-      const province = new ProvinceRepository()
-      const provinceId = province.create(provinceData)
-
-      d.amphurs.map(a => {
-        const cityName = a.AMPHUR_NAME
-        const cityData = {
-          province_id: provinceId,
-          city_name: cityName
-        }
-        const city = new CityRepository()
-        city.create(cityData)
+    try {
+      await createConnection()
+      .then(async connection => {
+        console.log('Database connected.')
       })
-    })
+      .catch(error => console.log('Database connection error: ', error))
+
+      const countryData = {
+        country_name_th: 'ประเทศไทย',
+        country_name_en: 'Thailand'
+      }
+
+      const country = new CountryRepository()
+      const getCountry = await country.create(countryData)
+      for (const p in addressJson) {
+        const provinceNameTH = addressJson[p].PROVINCE_NAME
+        const provinceNameEN = addressJson[p].PROVINCE_NAME_ENG
+
+        const provinceData = {
+          country: getCountry.id,
+          province_name_th: provinceNameTH,
+          province_name_en: provinceNameEN
+        }
+        const province = new ProvinceRepository()
+        const getProvince = await province.create(provinceData)
+        for (const a in addressJson[p].amphurs) {
+          const cityNameTH = addressJson[p].amphurs[a].AMPHUR_NAME
+          const cityNameEN = addressJson[p].amphurs[a].AMPHUR_NAME_ENG
+
+          const cityData = {
+            province: getProvince.id,
+            city_name_th: cityNameTH,
+            city_name_en: cityNameEN
+          }
+          const city = new CityRepository()
+          await city.create(cityData)
+        }
+      }
+    } catch (e) {
+      console.log('error', e.message)
+    }
   }
 }
 

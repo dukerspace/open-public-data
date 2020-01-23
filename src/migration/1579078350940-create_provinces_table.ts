@@ -4,7 +4,7 @@ export class createProvincesTable1579078350940 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(
       new Table({
-        name: 'provices',
+        name: 'provinces',
         columns: [
           {
             name: 'id',
@@ -17,7 +17,11 @@ export class createProvincesTable1579078350940 implements MigrationInterface {
             type: 'integer'
           },
           {
-            name: 'provice_name',
+            name: 'province_name_th',
+            type: 'varchar'
+          },
+          {
+            name: 'province_name_en',
             type: 'varchar'
           }
         ]

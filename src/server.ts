@@ -1,12 +1,12 @@
 import { config } from 'dotenv'
-import * as express from 'express'
+import express from 'express'
 import * as bodyParser from 'body-parser'
 import { resolve } from 'path'
 import { createConnection } from 'typeorm'
-import * as cron from 'cron'
+import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
-import FeachData from './jobs/FetchData'
+import FetchData from './jobs/fetchData'
 
 config({ path: resolve(__dirname, '../.env') })
 const hostname = process.env.SERVICE_HOSTNAME
@@ -46,12 +46,12 @@ new cronJob(
   '0 * * * * *',
   function() {
     console.log('Fetch data')
-    const fetching = new FeachData()
+    const fetching = new FetchData()
     fetching.getData()
   },
   null,
   true,
-  'Asia/bangkok'
+  'Asia/Bangkok'
 )
 
 app.listen(port, () => {

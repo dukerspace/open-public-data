@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { City } from './City'
 
 @Entity('places')
 export class Place {
@@ -6,7 +7,10 @@ export class Place {
   id: number
 
   @Column()
-  place_name: string
+  place_name_th: string
+
+  @Column()
+  place_name_en: string
 
   @Column()
   lat: number
@@ -14,8 +18,12 @@ export class Place {
   @Column()
   long: number
 
+  @ManyToOne(type => Place, place => place.city)
+  @JoinColumn({ name: 'city_id' })
+  city: City
+
   @Column()
-  city_id: number
+  last_updated: 'timestamp with time zone'
 
   @CreateDateColumn()
   created_at: 'timestamp with time zone'
