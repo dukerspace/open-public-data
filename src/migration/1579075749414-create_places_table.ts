@@ -33,6 +33,11 @@ export class createPlacesTable1579075749414 implements MigrationInterface {
             type: 'integer'
           },
           {
+            name: 'last_updated',
+            type: 'timestamp with time zone',
+            default: 'now()'
+          },
+          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()'

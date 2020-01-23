@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm'
 import { Province } from './Province'
+import { Place } from './Place'
 
 @Entity('cities')
 export class City {
@@ -15,4 +16,8 @@ export class City {
 
   @Column()
   city_name_en: string
+
+  @OneToMany(type => Place, Place => Place.city)
+  @JoinColumn()
+  place: Place
 }

@@ -49,7 +49,7 @@ class RunThailand {
           const cityNameEN = addressJson[p].amphurs[a].AMPHUR_NAME_ENG
 
           const cityData = {
-            province_id: getProvince.id,
+            province: getProvince.id,
             city_name_th: cityNameTH,
             city_name_en: cityNameEN
           }
