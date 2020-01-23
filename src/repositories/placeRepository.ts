@@ -1,5 +1,6 @@
 import BaseRepository from './baseRepository'
 import { Place } from '../entity/Place'
+import { getRepository, Like } from 'typeorm'
 
 class PlaceRepository extends BaseRepository {
   constructor() {
@@ -14,6 +15,20 @@ class PlaceRepository extends BaseRepository {
   }
   public async create(data): Promise<Place> {
     return await super.create(data)
+  }
+  public async findPlaceEN(name: string) {
+    return await getRepository(Place).findOne({
+      where: {
+        place_name_en: name
+      }
+    })
+  }
+  public async findPlaceTH(name: string) {
+    return await getRepository(Place).findOne({
+      where: {
+        place_name_th: name
+      }
+    })
   }
 }
 

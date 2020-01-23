@@ -6,7 +6,7 @@ import { createConnection } from 'typeorm'
 import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
-import FeachData from './jobs/FetchData'
+import FetchData from './jobs/fetchData'
 
 config({ path: resolve(__dirname, '../.env') })
 const hostname = process.env.SERVICE_HOSTNAME
@@ -42,17 +42,17 @@ app.use(router)
 
 // Cron job
 const cronJob = cron.CronJob
-// new cronJob(
-//   '0 * * * * *',
-//   function() {
-//     console.log('Fetch data')
-//     const fetching = new FeachData()
-//     fetching.getData()
-//   },
-//   null,
-//   true,
-//   'Asia/Bangkok'
-// )
+new cronJob(
+  '0 * * * * *',
+  function() {
+    console.log('Fetch data')
+    const fetching = new FetchData()
+    fetching.getData()
+  },
+  null,
+  true,
+  'Asia/Bangkok'
+)
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)

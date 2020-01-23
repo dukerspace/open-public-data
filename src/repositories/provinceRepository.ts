@@ -9,9 +9,14 @@ class ProvinceRepository extends BaseRepository {
   public async create(data): Promise<Province> {
     return await super.create(data)
   }
-  public async findProvince(province) {
-    return await getRepository(Province).find({
-      province_name_en: Like(`%${province}%`)
+  public async findProvinceEN(name: string) {
+    return await getRepository(Province).findOne({
+      province_name_en: Like(`%${name}%`)
+    })
+  }
+  public async findProvinceTH(name: string) {
+    return await getRepository(Province).findOne({
+      province_name_th: Like(`%${name}%`)
     })
   }
 }
