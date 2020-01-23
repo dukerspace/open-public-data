@@ -25,7 +25,7 @@ class FetchController {
     await axios(url)
     .then(res => {
       const data = res.data.stations
-      data.map(async (d, i) => {
+      data.map(async d => {
         const nameTH = d.nameTH
         const nameEN = d.nameEN
         const areaTH = d.areaTH

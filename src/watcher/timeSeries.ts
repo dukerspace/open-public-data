@@ -1,5 +1,4 @@
 import * as Influx from 'influx'
-// const Influx = require('influx')
 class TimeSeries {
   constructor() {
 
