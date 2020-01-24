@@ -5,7 +5,7 @@ import PlaceRepository from '../repositories/placeRepository'
 import moment = require('moment')
 import TimeSeries from './timeSeries'
 import { createConnection } from 'typeorm'
-import { isNumber } from 'util'
+import { Place } from '../entity/Place'
 class FetchController {
   url: string
   constructor() {
@@ -74,13 +74,22 @@ class FetchController {
           }, insertData)
         }
 
-        const placeId = await this.getPlace(nameTH, nameEN)
+        if (!isNaN(Number(data.AQI.aqi)) && !isNaN(Number(data.AQI.Level))) {
+          insertData = Object.assign({
+            'AQI': Number(data.AQI.aqi),
+            'LEVEL':  Number(data.AQI.Level),
+          }, insertData)
+        }
 
-        if (placeId) {
+        const place = await this.getPlace(nameTH, nameEN)
+
+        if (place && moment(place.last_updated).isSame(moment(`${data.date} ${data.time}`, 'YYYY-MM-DD HH:mm'))) {
+          return
+        } else if (place && !moment(place.last_updated).isSame(moment(`${data.date} ${data.time}`, 'YYYY-MM-DD HH:mm'))) {
           const timeSeries = {
             measurement: 'air_quality',
             tags: {
-              placeId: placeId,
+              placeId: place.id,
               source: 'air4thai'
             },
             fields: insertData
@@ -88,7 +97,8 @@ class FetchController {
           if (Object.keys(insertData).length === 0) {
             return
           }
-          console.log('insertData', insertData)
+          const placeRepo = new PlaceRepository()
+          placeRepo.update(place.id, { last_updated: moment(`${data.date} ${data.time}`, 'YYYY-MM-DD HH:mm')})
           const influx = new TimeSeries()
           await influx.sendToInflux(timeSeries)
           return
@@ -157,15 +167,15 @@ class FetchController {
       return getCityEN.id
     }
   }
-  public async getPlace(nameTH: string, nameEN: string): Promise<number|void> {
+  public async getPlace(nameTH: string, nameEN: string): Promise<Place> {
     const place = new PlaceRepository()
     const getPlaceTH = await place.findPlaceTH(nameTH)
     if (getPlaceTH) {
-      return getPlaceTH.id
+      return getPlaceTH
     }
     const getPlaceEN = await place.findPlaceEN(nameEN)
     if (getPlaceEN) {
-      return getPlaceEN.id
+      return getPlaceEN
     }
   }
   public async createPlace(data) {

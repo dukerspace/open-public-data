@@ -25,7 +25,9 @@ class TimeSeries {
             O3: Influx.FieldType.INTEGER,
             CO: Influx.FieldType.FLOAT,
             NO2: Influx.FieldType.INTEGER,
-            SO2: Influx.FieldType.INTEGER
+            SO2: Influx.FieldType.INTEGER,
+            AQI: Influx.FieldType.INTEGER,
+            LEVEL: Influx.FieldType.INTEGER
           },
           tags: [
             'placeId',
