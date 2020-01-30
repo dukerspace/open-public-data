@@ -4,7 +4,11 @@ LABEL maintainer="dukerspace <montolsaklor@gmail.com>"
 COPY . /var/www/air
 
 # Install pm2
-RUN npm install pm2 -g
+RUN npm install pm2 g
+
+RUN npm install -g typescript
+RUN pm2 install typescript
+RUN pm2 install ts-node
 
 WORKDIR /var/www/air
 
