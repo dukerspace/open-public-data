@@ -16,12 +16,6 @@ class FetchController {
   }
   public async run() {
     const url = this.url
-    await createConnection()
-    .then(async connection => {
-      console.log('Database connected.')
-    })
-    .catch(error => console.log('Database connection error: ', error))
-
     await axios(url)
     .then(res => {
       const data = res.data.stations
@@ -129,6 +123,7 @@ class FetchController {
             const placeId = await this.createPlace(createPlace)
             if (placeId) {
               const timeSeries = {
+                measurement: 'air_quality',
                 tags: {
                   placeId: placeId
                 },
