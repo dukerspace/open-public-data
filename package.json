@@ -5,7 +5,7 @@
    "license": "MIT",
    "scripts": {
       "dev": "nodemon --watch src -e ts --exec ts-node src/server.ts",
-      "clean": "prettier --write '{src,__test__}/**/*.ts'",
+      "clean": "./node_modules/.bin/prettier --write '{src,__test__}/**/*.ts'",
       "start": "ts-node src/index.ts",
       "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
       "seeder": "ts-node src/seeders/runThailand.ts"
