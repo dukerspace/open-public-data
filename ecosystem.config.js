@@ -1,10 +1,10 @@
 module.exports = {
   apps : [{
     name: 'air',
-    script: 'yarn',
+    script: 'npm',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
-    args: 'start',
+    args: 'run start',
     instances: 1,
     autorestart: true,
     watch: false,
