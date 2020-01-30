@@ -6,7 +6,7 @@
    "scripts": {
       "dev": "./node_modules/.bin/nodemon --watch src -e ts --exec ts-node src/server.ts",
       "clean": "./node_modules/.bin/prettier --write '{src,__test__}/**/*.ts'",
-      "start": "./node_modules/.bints-node src/index.ts",
+      "start": "./node_modules/.bin/ts-node src/index.ts",
       "typeorm": "./node_modules/.bints-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
       "seeder": "./node_modules/.bints-node src/seeders/runThailand.ts"
    },
