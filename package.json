@@ -4,11 +4,11 @@
    "main": "src/server.ts",
    "license": "MIT",
    "scripts": {
-      "dev": "nodemon --watch src -e ts --exec ts-node src/server.ts",
+      "dev": "./node_modules/.bin/nodemon --watch src -e ts --exec ts-node src/server.ts",
       "clean": "./node_modules/.bin/prettier --write '{src,__test__}/**/*.ts'",
-      "start": "ts-node src/index.ts",
-      "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-      "seeder": "ts-node src/seeders/runThailand.ts"
+      "start": "./node_modules/.bints-node src/index.ts",
+      "typeorm": "./node_modules/.bints-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+      "seeder": "./node_modules/.bints-node src/seeders/runThailand.ts"
    },
    "dependencies": {
       "axios": "^0.19.1",
