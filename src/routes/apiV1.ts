@@ -5,20 +5,20 @@ import PlaceController from '../controllers/api/v1/placeController'
 const router = express.Router()
 
 // Country
-router.get('/api/v1/countries', CountryController.index)
-router.get('/api/v1/countries/:id', CountryController.show)
+router.get('/v1/air/countries', CountryController.index)
+router.get('/v1/air/countries/:id', CountryController.show)
 
 // Province
-router.get('/api/v1/countries', CountryController.index)
-router.get('/api/v1/countries/:id', CountryController.show)
+router.get('/v1/air/countries', CountryController.index)
+router.get('/v1/air/countries/:id', CountryController.show)
 
 // City
-router.get('/api/v1/countries', CountryController.index)
-router.get('/api/v1/countries/:id', CountryController.show)
+router.get('/v1/air/countries', CountryController.index)
+router.get('/v1/air/countries/:id', CountryController.show)
 
 // Place
-router.get('/api/v1/places', PlaceController.index)
-router.get('/api/v1/places/:id', PlaceController.show)
+router.get('/v1/air/places', PlaceController.index)
+router.get('/v1/air/places/:id', PlaceController.show)
 
 // Data type
 
