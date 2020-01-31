@@ -8,7 +8,8 @@
       "clean": "./node_modules/.bin/prettier --write '{src,__test__}/**/*.ts'",
       "start": "./node_modules/.bin/ts-node src/server.ts",
       "typeorm": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-      "seeder": "./node_modules/.bin/ts-node src/seeders/runThailand.ts"
+      "seeder": "./node_modules/.bin/ts-node src/seeders/runThailand.ts",
+      "fetch": "./node_modules/.bin/ts-node src/watcher/fetchAir.ts"
    },
    "dependencies": {
       "axios": "^0.19.1",
