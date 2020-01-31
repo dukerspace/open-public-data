@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm'
-
+import fetchAir from './fetchAir'
 class Cli {
   constructor() {
     this.run()
@@ -11,6 +11,7 @@ class Cli {
     })
     .catch(error => console.log('Database connection error: ', error))
 
+    new fetchAir()
   }
 }
 
