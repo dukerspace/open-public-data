@@ -42,8 +42,9 @@ app.use(router)
 
 // Cron job
 const cronJob = cron.CronJob
+// At every 20th minute from 0 through 59
 new cronJob(
-  '0 * * * * *',
+  '0/20 * * * *',
   function() {
     console.log('Fetch data')
     const fetching = new FetchData()
@@ -53,6 +54,7 @@ new cronJob(
   true,
   'Asia/Bangkok'
 )
+
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)

@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'Air',
+    name: 'air',
     script: 'npm',
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
@@ -14,7 +14,10 @@ module.exports = {
     },
     env_production: {
       NODE_ENV: 'production'
-    }
+    },
+    log_file: "./logs/log.log",
+    out_file: "./logs/out.log",
+    error_file: "./logs/error.log"
   }],
 
   deploy : {
