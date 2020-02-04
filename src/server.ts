@@ -2,13 +2,14 @@ import { config } from 'dotenv'
 import express from 'express'
 import * as bodyParser from 'body-parser'
 import { resolve } from 'path'
-import { createConnection } from 'typeorm'
 import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
+import configApp from './config'
 import FetchData from './jobs/fetchData'
 
 config({ path: resolve(__dirname, '../.env') })
+
 const hostname = process.env.SERVICE_HOSTNAME
 const port = process.env.SERVICE_PORT
 const env = process.env.NODE_ENV
@@ -30,12 +31,8 @@ app.use(
 )
 app.use(bodyParser.json())
 
-// Connect database
-createConnection()
-  .then(async connection => {
-    console.log('Database connected.')
-  })
-  .catch(error => console.log('Database connection error: ', error))
+// All config
+configApp()
 
 // Bootstrap application route
 app.use(router)
@@ -54,7 +51,6 @@ new cronJob(
   true,
   'Asia/Bangkok'
 )
-
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)
