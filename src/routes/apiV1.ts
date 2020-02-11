@@ -1,24 +1,28 @@
 import * as express from 'express'
-import CountryController from '../controllers/api/v1/countryController'
-import PlaceController from '../controllers/api/v1/placeController'
+import { CountryController, PlaceController, ProvinceController, CityController } from '../controllers/api/v1'
 
 const router = express.Router()
+const country = new CountryController
+const province = new ProvinceController
+const city = new CityController
+const place = new PlaceController
 
 // Country
-router.get('/air/v1/countries', CountryController.index)
-router.get('/air/v1/countries/:id', CountryController.show)
+router.get('/air/v1/countries', country.index)
+router.get('/air/v1/countries/:id', country.show)
 
 // Province
-router.get('/air/v1/countries', CountryController.index)
-router.get('/air/v1/countries/:id', CountryController.show)
+router.get('/air/v1/provinces', province.index)
+router.get('/air/v1/provinces/:id', province.show)
 
 // City
-router.get('/air/v1/countries', CountryController.index)
-router.get('/air/v1/countries/:id', CountryController.show)
+router.get('/air/v1/cities', city.index)
+router.get('/air/v1/cities/:id', city.show)
 
 // Place
-router.get('/air/v1/places', PlaceController.index)
-router.get('/air/v1/places/:id', PlaceController.show)
+// PlaceController.index
+router.get('/air/v1/places', place.index)
+router.get('/air/v1/places/:id', place.show)
 
 // Data type
 

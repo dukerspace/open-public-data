@@ -1,10 +1,12 @@
-import CountryRepository from "../../../repositories/countryRepository"
+import { CountryRepository } from "../../../repositories"
 
-class CountryController {
-  constructor() {}
+export class CountryController {
+  private readonly country
+  constructor() {
+    this.country = CountryRepository
+  }
   public async index(req, res) {
-    const country = new CountryRepository()
-    const result = await country.pagination(1, 10)
+    const result = await this.country.pagination(1, 10)
     return res.json({
       success: true,
       data: result
@@ -15,5 +17,3 @@ class CountryController {
   public async update() {}
   public async delete() {}
 }
-
-export default new CountryController()

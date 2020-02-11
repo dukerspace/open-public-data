@@ -1,12 +1,11 @@
 import axios from 'axios'
-import ProvinceRepository from '../repositories/provinceRepository'
-import CityRepository from '../repositories/cityRepository'
-import PlaceRepository from '../repositories/placeRepository'
+import { ProvinceRepository, CityRepository, PlaceRepository } from '../repositories'
 import moment = require('moment')
-import TimeSeries from './timeSeries'
+import { TimeSeries } from './timeSeries'
 import { createConnection } from 'typeorm'
 import { Place } from '../entity/Place'
-class FetchController {
+
+export class FetchAir {
   url: string
   constructor() {
     console.log('Get start fetch.')
@@ -179,5 +178,3 @@ class FetchController {
     return result.id
   }
 }
-
-export default FetchController

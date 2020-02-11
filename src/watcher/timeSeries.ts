@@ -1,5 +1,5 @@
 import * as Influx from 'influx'
-class TimeSeries {
+export class TimeSeries {
   constructor() {
 
   }
@@ -51,5 +51,3 @@ class TimeSeries {
     }
   }
 }
-
-export default TimeSeries

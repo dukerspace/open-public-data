@@ -1,4 +1,4 @@
-import PlaceRepository from '../../../repositories/placeRepository'
+import { PlaceRepository } from '../../../repositories'
 import {
   MSG_CREATED_SUCCESS,
   MSG_UPDATED_SUCCESS,
@@ -6,10 +6,15 @@ import {
   MSG_DELETED_FAIL
 } from '../../../utils/webConstant'
 
-class PlaceController {
+export class PlaceController  {
+  private readonly placeRepo: PlaceRepository
+  constructor() {
+    this.placeRepo = new PlaceRepository
+  }
   public async index(req, res) {
     try {
-      const result = await new PlaceRepository().pagination(1, 2)
+      const result =  this
+      // const result = Math.random()
       return res.json({
         success: true,
         data: result
@@ -24,7 +29,7 @@ class PlaceController {
   public async create(req, res) {
     try {
       const data = {}
-      const result = await new PlaceRepository().create(data)
+      const result = await this.placeRepo.create(data)
       return res.json({
         success: true,
         data: result
@@ -39,7 +44,7 @@ class PlaceController {
   public async show(req, res) {
     try {
       const id = req.params.id
-      const result = await new PlaceRepository().find(id)
+      const result = await this.placeRepo.find(id)
       if (!result) throw new Error('Place not found.')
       return res.json({
         success: true,
@@ -56,7 +61,7 @@ class PlaceController {
     try {
       const id = req.params.id
       const data = {}
-      const result = await new PlaceRepository().update(id, data)
+      const result = await this.placeRepo.update(id, data)
       return res.json({
         success: true,
         data: result
@@ -71,7 +76,7 @@ class PlaceController {
   public async delete(req, res) {
     try {
       const id = req.body.id
-      const result = await new PlaceRepository().delete(id)
+      const result = await this.placeRepo.delete(id)
       if (!result) throw new Error(MSG_DELETED_FAIL)
       return res.json({
         success: true,
@@ -85,5 +90,3 @@ class PlaceController {
     }
   }
 }
-
-export default new PlaceController()

@@ -1,7 +1,7 @@
-import BaseRepository from './baseRepository'
+import { BaseRepository } from './baseRepository'
 import { Country } from '../entity/Country'
 
-class CountryRepository extends BaseRepository {
+export class CountryRepository extends BaseRepository {
   constructor() {
     super(Country)
   }
@@ -9,5 +9,3 @@ class CountryRepository extends BaseRepository {
     return await super.create(data)
   }
 }
-
-export default CountryRepository

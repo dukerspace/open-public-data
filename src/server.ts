@@ -5,8 +5,8 @@ import { resolve } from 'path'
 import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
-import configApp from './config'
-import FetchData from './jobs/fetchData'
+import { configApp } from './config'
+import FetchData from './tasks/fetchData'
 
 config({ path: resolve(__dirname, '../.env') })
 
@@ -35,22 +35,7 @@ app.use(bodyParser.json())
 configApp()
 
 // Bootstrap application route
-app.use(router)
-
-// Cron job
-const cronJob = cron.CronJob
-// At every 20th minute from 0 through 59
-new cronJob(
-  '0/20 * * * *',
-  function() {
-    console.log('Fetch data')
-    const fetching = new FetchData()
-    fetching.getData()
-  },
-  null,
-  true,
-  'Asia/Bangkok'
-)
+app.use(router.apiV1)
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)

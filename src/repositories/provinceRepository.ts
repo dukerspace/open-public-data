@@ -1,8 +1,8 @@
-import BaseRepository from './baseRepository'
+import { BaseRepository } from './baseRepository'
 import { Province } from '../entity/Province'
 import { getRepository, Like } from 'typeorm'
 
-class ProvinceRepository extends BaseRepository {
+export class ProvinceRepository extends BaseRepository {
   constructor() {
     super(Province)
   }
@@ -21,4 +21,3 @@ class ProvinceRepository extends BaseRepository {
   }
 }
 
-export default ProvinceRepository

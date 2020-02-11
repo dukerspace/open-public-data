@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm'
 
-class BaseRepository {
+export class BaseRepository {
   constructor(protected model) {}
   public async pagination(page: number, limit: number) {
     let skip = page === 1 ? 0 : (page - 1) * limit
@@ -26,5 +26,3 @@ class BaseRepository {
     return await getRepository(this.model).delete(id)
   }
 }
-
-export default BaseRepository

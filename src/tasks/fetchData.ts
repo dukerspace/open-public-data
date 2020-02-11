@@ -1,5 +1,4 @@
-import FetchAir from '../watcher/fetchAir'
-import FetchWeather from '../watcher/fetchWeather'
+import { FetchAir } from '../watcher/fetchAir'
 
 class FetchData {
   constructor() {

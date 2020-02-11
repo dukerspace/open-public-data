@@ -1,9 +1,7 @@
-import db from './db'
+import { dbConfig } from './db'
 
-const config = () => {
+export const configApp = () => {
   return {
-    configDb: db()
+    configDb: dbConfig()
   }
 }
-
-export default config

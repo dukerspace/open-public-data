@@ -1,8 +1,6 @@
 import { createConnection, DatabaseType } from 'typeorm'
 
-
-
-const dbConfig = () => {
+export const dbConfig = () => {
   const connection = <DatabaseType>process.env.DB_CONNECTION ?? "postgres"
   const host = process.env.DB_HOST ?? "localhost"
   const port: number = Number(process.env.DB_PORT) ?? 5432
@@ -45,5 +43,3 @@ const dbConfig = () => {
       console.log(`Database connection error : ${error}`)
     })
 }
-
-export default dbConfig

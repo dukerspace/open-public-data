@@ -1,4 +1,4 @@
-class DataTypeController {
+export class DataTypeController {
   constructor() {}
   public async index() {}
   public async create() {}
@@ -6,5 +6,3 @@ class DataTypeController {
   public async update() {}
   public async delete() {}
 }
-
-export default new DataTypeController()
