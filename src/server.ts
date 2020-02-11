@@ -6,7 +6,6 @@ import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
 import { configApp } from './config'
-import FetchData from './tasks/fetchData'
 
 config({ path: resolve(__dirname, '../.env') })
 

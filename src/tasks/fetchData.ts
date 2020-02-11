@@ -1,6 +1,6 @@
 import { FetchAir } from '../watcher/fetchAir'
 
-class FetchData {
+export class FetchData {
   constructor() {
     this.getData()
   }
@@ -9,5 +9,3 @@ class FetchData {
     fetchAir.run()
   }
 }
-
-export default FetchData
