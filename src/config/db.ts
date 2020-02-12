@@ -22,15 +22,15 @@ export const dbConfig = () => {
       "src/entity/**/*.ts"
     ],
     migrations: [
-      "src/migration/**/*.ts"
+      "src/database/migration/**/*.ts"
     ],
     subscribers: [
-      "src/subscriber/**/*.ts"
+      "src/database/subscriber/**/*.ts"
     ],
     cli: {
       entitiesDir: "src/entity",
-      migrationsDir: "src/migration",
-      subscribersDir: "src/subscriber"
+      migrationsDir: "src/database/migration",
+      subscribersDir: "src/database/subscriber"
     }
   }
 
