@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ProvinceRepository, CityRepository, PlaceRepository } from '../repositories'
 import moment = require('moment')
-import { TimeSeries } from './timeSeries'
+import { InfluxAir } from './influxAir'
 import { createConnection } from 'typeorm'
 import { Place } from '../entity/Place'
 
@@ -92,7 +92,7 @@ export class FetchAir {
           }
           const placeRepo = new PlaceRepository()
           placeRepo.update(place.id, { last_updated: moment(`${data.date} ${data.time}`, 'YYYY-MM-DD HH:mm')})
-          const influx = new TimeSeries()
+          const influx = new InfluxAir()
           await influx.sendToInflux(timeSeries)
           return
         } else {
@@ -128,7 +128,7 @@ export class FetchAir {
                 },
                 fields: insertData
               }
-              const influx = new TimeSeries()
+              const influx = new InfluxAir()
               await influx.sendToInflux(timeSeries)
             }
           }

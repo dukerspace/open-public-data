@@ -1,8 +1,5 @@
 import { createConnection } from 'typeorm'
-import CountryRepository from '../repositories/countryRepository'
-import ProvinceRepository from '../repositories/provinceRepository'
-import CityRepository from '../repositories/cityRepository'
-
+import { CountryRepository, ProvinceRepository, CityRepository } from '../repositories'
 import addressJson from './ThailandLocation.json'
 
 class RunThailand {

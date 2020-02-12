@@ -1,8 +1,5 @@
 import * as Influx from 'influx'
-export class TimeSeries {
-  constructor() {
-
-  }
+export class InfluxAir {
   public config() {
     const hostname = process.env.INFLUX_HOST
     const port = Number(process.env.INFLUX_PORT)

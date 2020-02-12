@@ -7,14 +7,13 @@
     "dev": "./node_modules/.bin/nodemon --watch src -e ts --exec ts-node src/server.ts",
     "clean": "./node_modules/.bin/prettier --write '{src,__test__}/**/*.ts'",
     "start": "./node_modules/.bin/ts-node src/server.ts",
+    "build": "tsc",
     "test": "jest",
     "test:all": "jest",
-    "test:unit":  "jest",
+    "test:unit": "jest",
     "test:feature": "jest",
     "coverage": "jest",
-    "typeorm": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "seeder": "./node_modules/.bin/ts-node src/seeders/runThailand.ts",
-    "fetch": "./node_modules/.bin/ts-node src/watcher/fetchAir.ts"
+    "typeorm": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "axios": "^0.19.1",
