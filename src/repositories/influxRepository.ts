@@ -1,11 +1,6 @@
-
 class InfluxRepository {
-  constructor() {
-
-  }
-  public findByPlaceId(placeId: number) {
-
-  }
+  constructor() {}
+  public findByPlaceId(placeId: number) {}
 }
 
 export default InfluxRepository

@@ -1,9 +1,4 @@
-import { dbConfig } from './db'
-import { Schedule } from './schedule'
+import './db'
+import { App } from './app'
 
-export const configApp = () => {
-  return {
-    configDb: dbConfig(),
-    schedule: new Schedule()
-  }
-}
+export const configApp = () => new App()

@@ -1,9 +1,9 @@
 import { config } from 'dotenv'
 import e from 'express'
 import * as bodyParser from 'body-parser'
-import * as compression from 'compression'
-import * as helmet from 'helmet'
-import * as rateLimit from 'express-rate-limit'
+import compression from 'compression'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 import { resolve } from 'path'
 import router from './routes'
 import 'reflect-metadata'
@@ -27,7 +27,7 @@ app.use(requestTime)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 500 // limit each IP to 100 requests per windowMs
-});
+})
 
 app.use(limiter)
 app.use(compression())

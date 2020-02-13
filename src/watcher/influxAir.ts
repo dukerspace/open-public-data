@@ -26,10 +26,7 @@ export class InfluxAir {
             AQI: Influx.FieldType.INTEGER,
             LEVEL: Influx.FieldType.INTEGER
           },
-          tags: [
-            'placeId',
-            'source'
-          ]
+          tags: ['placeId', 'source']
         }
       ]
     })
@@ -38,12 +35,13 @@ export class InfluxAir {
   public sendToInflux(data) {
     try {
       const influx = this.config()
-      influx.writePoints([data])
+      influx
+        .writePoints([data])
         .then()
         .catch(err => {
           console.log(err.message)
         })
-    } catch(e) {
+    } catch (e) {
       console.log(e.message)
     }
   }

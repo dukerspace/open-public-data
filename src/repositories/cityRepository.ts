@@ -21,7 +21,7 @@ export class CityRepository extends BaseRepository {
     return await getRepository(City).findOne({
       where: {
         province_id: provinceId,
-        city_name_th: Like(`%${name}%`),
+        city_name_th: Like(`%${name}%`)
       }
     })
   }

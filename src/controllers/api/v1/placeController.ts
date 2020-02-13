@@ -6,14 +6,14 @@ import {
   MSG_DELETED_FAIL
 } from '../../../utils/webConstant'
 
-export class PlaceController  {
+export class PlaceController {
   private readonly placeRepo: PlaceRepository
   constructor() {
-    this.placeRepo = new PlaceRepository
+    this.placeRepo = new PlaceRepository()
   }
   public async index(req, res) {
     try {
-      const result =  this
+      const result = this
       // const result = Math.random()
       return res.json({
         success: true,

@@ -1,4 +1,4 @@
-import { CityRepository } from "../../../repositories"
+import { CityRepository } from '../../../repositories'
 
 export class CityController {
   public async index(req, res) {

@@ -5,9 +5,9 @@ export class BaseRepository {
   query: Array<string>
   constructor(protected model) {}
   public async pagination(page: number, limit?: number) {
-    const pageLimit: number = Number(limit) ?? 15
-    const pageNumber: number = Number(page)
-    const skip: number =  pageNumber === 1 ? 0 : (pageNumber - 1) * pageLimit
+    const pageLimit: number = limit ?? 15
+    const pageNumber: number = page
+    const skip: number = pageNumber === 1 ? 0 : (pageNumber - 1) * pageLimit
     const result = await getRepository(this.model)
       .createQueryBuilder(`${this.model}`)
       .where({
@@ -44,18 +44,10 @@ export class BaseRepository {
   private currentUrl(): string {
     return
   }
-  private firstPage() {
-
-  }
-  private lastPage() {
-
-  }
-  private nextPage() {
-
-  }
-  private prevPage() {
-
-  }
+  private firstPage() {}
+  private lastPage() {}
+  private nextPage() {}
+  private prevPage() {}
   public async create(data) {
     return await getRepository(this.model).save(data)
   }

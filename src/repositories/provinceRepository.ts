@@ -20,4 +20,3 @@ export class ProvinceRepository extends BaseRepository {
     })
   }
 }
-

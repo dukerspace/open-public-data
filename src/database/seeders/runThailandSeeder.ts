@@ -11,15 +11,14 @@ class RunThailand {
     console.log('Seeding.')
     await this.insert()
     console.log('Seeded.')
-
   }
   public async insert() {
     try {
       await createConnection()
-      .then(async connection => {
-        console.log('Database connected.')
-      })
-      .catch(error => console.log('Database connection error: ', error))
+        .then(async connection => {
+          console.log('Database connected.')
+        })
+        .catch(error => console.log('Database connection error: ', error))
 
       const countryData = {
         country_name_th: 'ประเทศไทย',

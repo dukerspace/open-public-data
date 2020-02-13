@@ -1,4 +1,4 @@
-import { CountryRepository } from "../../../repositories"
+import { CountryRepository } from '../../../repositories'
 
 export class CountryController {
   public async index(req, res) {

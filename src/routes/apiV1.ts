@@ -1,11 +1,16 @@
 import * as express from 'express'
-import { CountryController, PlaceController, ProvinceController, CityController } from '../controllers/api/v1'
+import {
+  CountryController,
+  PlaceController,
+  ProvinceController,
+  CityController
+} from '../controllers/api/v1'
 
 const router = express.Router()
-const country = new CountryController
-const province = new ProvinceController
-const city = new CityController
-const place = new PlaceController
+const country = new CountryController()
+const province = new ProvinceController()
+const city = new CityController()
+const place = new PlaceController()
 
 // Country
 router.get('/air/v1/countries', country.index)
