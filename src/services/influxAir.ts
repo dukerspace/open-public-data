@@ -45,4 +45,7 @@ export class InfluxAir {
       console.log(e.message)
     }
   }
+  public getDataByPlaceId(placeId: number) {
+
+  }
 }

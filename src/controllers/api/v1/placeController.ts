@@ -5,12 +5,13 @@ import {
   MSG_DELETED_SUCCESS,
   MSG_DELETED_FAIL
 } from '../../../utils/webConstant'
+import { BaseController } from '../../baseController'
 
-export class PlaceController {
+export class PlaceController extends BaseController {
   private readonly placeRepo: PlaceRepository
-  constructor() {
-    this.placeRepo = new PlaceRepository()
-  }
+  // constructor() {
+    // this.placeRepo = new PlaceRepository()
+  // }
   public async index(req, res) {
     try {
       const result = this

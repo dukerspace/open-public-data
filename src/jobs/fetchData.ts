@@ -1,4 +1,4 @@
-import { FetchAir } from '../watcher/fetchAir'
+import { FetchAir } from '../services/fetchAir'
 
 export class FetchData {
   constructor() {

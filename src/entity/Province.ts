@@ -9,7 +9,7 @@ export class Province {
 
   @ManyToOne(
     type => Country,
-    country => country.province
+    country => country.provinces
   )
   @JoinColumn({ name: 'country_id' })
   country: Country
@@ -25,5 +25,5 @@ export class Province {
     city => city.province
   )
   @JoinColumn()
-  city: City
+  cities: City
 }

@@ -1,6 +1,6 @@
 import cron from 'cron'
-import { FetchData } from '../tasks/fetchData'
-export class Schedule {
+import { FetchData } from '../jobs/fetchData'
+export default class Job {
   constructor() {
     this.runAir()
   }
@@ -11,8 +11,8 @@ export class Schedule {
       '0/20 * * * *',
       function() {
         console.log('Fetch data')
-        const fetching = new FetchData()
-        fetching.getData()
+        // const fetching = new FetchData()
+        // fetching.getData()
       },
       null,
       true,

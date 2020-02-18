@@ -17,5 +17,5 @@ export class Country {
     province => province.country
   )
   @JoinColumn()
-  province: Province
+  provinces: Province
 }
