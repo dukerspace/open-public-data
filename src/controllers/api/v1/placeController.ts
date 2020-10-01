@@ -7,10 +7,10 @@ import {
 } from '../../../utils/webConstant'
 import { BaseController } from '../../baseController'
 
-export class PlaceController extends BaseController {
+export class PlaceController {
   private readonly placeRepo: PlaceRepository
   // constructor() {
-    // this.placeRepo = new PlaceRepository()
+  // this.placeRepo = new PlaceRepository()
   // }
   public async index(req, res) {
     try {
