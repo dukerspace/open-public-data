@@ -1,9 +1,5 @@
 import * as express from 'express'
-import {
-  PlaceController,
-  ProvinceController,
-  CityController
-} from '../controllers/api/v1'
+import { PlaceController, ProvinceController, CityController } from '../controllers/api/v1'
 import CountryController from '../controllers/api/v1/countryController'
 
 const router = express.Router()
