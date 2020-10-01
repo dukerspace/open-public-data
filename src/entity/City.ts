@@ -7,8 +7,11 @@ export class City {
   @PrimaryGeneratedColumn()
   id: number
 
-  @ManyToOne(type => Province, province => province.city)
-  @JoinColumn({ name: "province_id" })
+  @ManyToOne(
+    type => Province,
+    province => province.cities
+  )
+  @JoinColumn({ name: 'province_id' })
   province: Province
 
   @Column()
@@ -17,7 +20,10 @@ export class City {
   @Column()
   city_name_en: string
 
-  @OneToMany(type => Place, Place => Place.city)
+  @OneToMany(
+    type => Place,
+    Place => Place.city
+  )
   @JoinColumn()
   place: Place
 }

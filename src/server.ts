@@ -1,28 +1,37 @@
 import { config } from 'dotenv'
-import express from 'express'
+import e from 'express'
 import * as bodyParser from 'body-parser'
+import compression from 'compression'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 import { resolve } from 'path'
-import { createConnection } from 'typeorm'
-import cron from 'cron'
 import router from './routes'
 import 'reflect-metadata'
-import FetchData from './jobs/fetchData'
+import { configApp } from './config'
 
 config({ path: resolve(__dirname, '../.env') })
+
 const hostname = process.env.SERVICE_HOSTNAME
 const port = process.env.SERVICE_PORT
 const env = process.env.NODE_ENV
 
-const app = express()
+const app = e()
 const today = new Date().toISOString().slice(0, 10)
 
 const requestTime = (req, res, next) => {
   req.requestTime = Date.now()
   next()
 }
-
 app.use(requestTime)
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 500 // limit each IP to 100 requests per windowMs
+})
+
+app.use(limiter)
+app.use(compression())
+app.use(helmet())
 app.use(
   bodyParser.urlencoded({
     extended: true
@@ -30,31 +39,11 @@ app.use(
 )
 app.use(bodyParser.json())
 
-// Connect database
-createConnection()
-  .then(async connection => {
-    console.log('Database connected.')
-  })
-  .catch(error => console.log('Database connection error: ', error))
+// All config
+configApp()
 
 // Bootstrap application route
-app.use(router)
-
-// Cron job
-const cronJob = cron.CronJob
-// At every 20th minute from 0 through 59
-new cronJob(
-  '0/20 * * * *',
-  function() {
-    console.log('Fetch data')
-    const fetching = new FetchData()
-    fetching.getData()
-  },
-  null,
-  true,
-  'Asia/Bangkok'
-)
-
+app.use(router.apiV1)
 
 app.listen(port, () => {
   console.log(`API server listening on ${hostname}:${port}, in ${env}`)

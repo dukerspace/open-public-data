@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  JoinColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn
+} from 'typeorm'
 import { City } from './City'
 
 @Entity('places')
@@ -18,7 +26,10 @@ export class Place {
   @Column()
   long: number
 
-  @ManyToOne(type => Place, place => place.city)
+  @ManyToOne(
+    type => Place,
+    place => place.city
+  )
   @JoinColumn({ name: 'city_id' })
   city: City
 

@@ -1,7 +1,6 @@
-import FetchAir from '../watcher/fetchAir'
-import FetchWeather from '../watcher/fetchWeather'
+import { FetchAir } from '../services/fetchAir'
 
-class FetchData {
+export class FetchData {
   constructor() {
     this.getData()
   }
@@ -10,5 +9,3 @@ class FetchData {
     fetchAir.run()
   }
 }
-
-export default FetchData

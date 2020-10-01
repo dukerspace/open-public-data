@@ -1,8 +1,5 @@
 import * as Influx from 'influx'
-class TimeSeries {
-  constructor() {
-
-  }
+export class InfluxAir {
   public config() {
     const hostname = process.env.INFLUX_HOST
     const port = Number(process.env.INFLUX_PORT)
@@ -29,10 +26,7 @@ class TimeSeries {
             AQI: Influx.FieldType.INTEGER,
             LEVEL: Influx.FieldType.INTEGER
           },
-          tags: [
-            'placeId',
-            'source'
-          ]
+          tags: ['placeId', 'source']
         }
       ]
     })
@@ -41,15 +35,17 @@ class TimeSeries {
   public sendToInflux(data) {
     try {
       const influx = this.config()
-      influx.writePoints([data])
+      influx
+        .writePoints([data])
         .then()
         .catch(err => {
           console.log(err.message)
         })
-    } catch(e) {
+    } catch (e) {
       console.log(e.message)
     }
   }
-}
+  public getDataByPlaceId(placeId: number) {
 
-export default TimeSeries
+  }
+}

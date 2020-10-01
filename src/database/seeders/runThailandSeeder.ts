@@ -1,9 +1,6 @@
 import { createConnection } from 'typeorm'
-import CountryRepository from '../repositories/countryRepository'
-import ProvinceRepository from '../repositories/provinceRepository'
-import CityRepository from '../repositories/cityRepository'
-
-import addressJson from './ThailandLocation.json'
+import { CountryRepository, ProvinceRepository, CityRepository } from '../../repositories'
+import addressJson from '../../assets/ThailandLocation.json'
 
 class RunThailand {
   addresses: []
@@ -14,15 +11,14 @@ class RunThailand {
     console.log('Seeding.')
     await this.insert()
     console.log('Seeded.')
-
   }
   public async insert() {
     try {
       await createConnection()
-      .then(async connection => {
-        console.log('Database connected.')
-      })
-      .catch(error => console.log('Database connection error: ', error))
+        .then(async connection => {
+          console.log('Database connected.')
+        })
+        .catch(error => console.log('Database connection error: ', error))
 
       const countryData = {
         country_name_th: 'ประเทศไทย',

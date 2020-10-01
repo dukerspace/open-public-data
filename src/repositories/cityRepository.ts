@@ -1,8 +1,8 @@
-import BaseRepository from './baseRepository'
+import { BaseRepository } from './baseRepository'
 import { City } from '../entity/City'
 import { getRepository, Like } from 'typeorm'
 
-class CityRepository extends BaseRepository {
+export class CityRepository extends BaseRepository {
   constructor() {
     super(City)
   }
@@ -21,10 +21,8 @@ class CityRepository extends BaseRepository {
     return await getRepository(City).findOne({
       where: {
         province_id: provinceId,
-        city_name_th: Like(`%${name}%`),
+        city_name_th: Like(`%${name}%`)
       }
     })
   }
 }
-
-export default CityRepository
